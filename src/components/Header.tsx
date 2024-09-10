@@ -13,6 +13,7 @@ export const Header = ({ children, ...props }: HeaderProps) => {
           <li>Inicio</li>
           <li>Salas</li>
           <li>Histórico</li>
+          <li>teste</li>
         </ul>
 
         <div>
