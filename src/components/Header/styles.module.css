@@ -3,10 +3,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     max-width: 1200px;
     margin: auto;
-
     padding: 1rem;
 }
 
@@ -14,19 +12,20 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    color: #232528;
+    font-weight: 700;
+    font-size: 1.25rem;
 }
 
 .header ul {
     display: flex;
-    gap: 0.5rem;
+    gap: 1.5rem;
 }   
 
 .header ul li {
     cursor: pointer;
-
-
 }
 
 .header ul li:hover {
-    color: green;
+    color: #999;
 }
