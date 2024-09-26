@@ -1,7 +1,7 @@
 import { User } from "@phosphor-icons/react/dist/ssr";
 import { ComponentProps } from "react";
 
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 type HeaderProps = ComponentProps<"header"> & {};
 
@@ -16,7 +16,7 @@ export const Header = ({ children, ...props }: HeaderProps) => {
           <li>Histórico</li>
         </ul>
 
-        <div>
+        <div className={styles.user}>
           <User />
         </div>
       </div>
