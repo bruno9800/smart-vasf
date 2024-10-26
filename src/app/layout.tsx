@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { MobileNav } from "@/components/MobileNav";
+import { WebSocketProvider } from "@/context/WebSocketProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
-        <Header />
-        <main className="max-w-[1200px] mx-auto mt-[110px] px-4">
-          {children}
-        </main>
-        <MobileNav />
-      </body>
+      <WebSocketProvider>
+        <body className={inter.className}>
+          <Header />
+          <main className="max-w-[1200px] mx-auto mt-[110px] px-4">
+            {children}
+          </main>
+          <MobileNav />
+        </body>
+      </WebSocketProvider>
     </html>
   );
 }

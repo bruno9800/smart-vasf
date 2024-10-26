@@ -1,3 +1,5 @@
+"use client";
+
 import InteractionRoom from "@/components/InteractionRoom";
 import Room from "@/components/Room";
 
