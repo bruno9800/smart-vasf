@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { MobileNav } from "@/components/MobileNav";
+import { WebSocketProvider } from "@/context/WebsocketProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
-        <main>{children}</main>
-      </body>
+      <WebSocketProvider>
+        <body className={inter.className}>
+          <main>{children}</main>
+        </body>
+      </WebSocketProvider>
     </html>
   );
 }
