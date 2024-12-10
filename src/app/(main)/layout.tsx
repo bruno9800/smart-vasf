@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
-import { MobileNav } from "@/components/MobileNav";
+import { WebSocketProvider } from "@/context/WebsocketProvider";
+// import { MobileNav } from "@/components/MobileNav";
 
 export const metadata: Metadata = {
   title: "Smart Vasf",
@@ -13,11 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="">
-      <Header />
+    <WebSocketProvider>
+      <section>
+        <Header />
 
-      <div className="max-w-[1200px] mx-auto px-4 mt-20">{children}</div>
-      <MobileNav />
-    </section>
+        <div className="max-w-[1200px] mx-auto px-4 mt-20">{children}</div>
+        {/* <MobileNav /> */}
+      </section>
+    </WebSocketProvider>
   );
 }
