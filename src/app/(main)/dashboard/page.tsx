@@ -1,13 +1,13 @@
 "use client";
 
-import InteractionRoom from "@/components/InteractionRoom";
-import Room from "@/components/Room";
+import RoomControls from "@/components/RoomControls";
+import History from "@/components/History";
 
-export default function Home() {
+export default function Dashboard() {
   return (
-    <section className="flex justify-evenly gap-4 flex-wrap md:flex-nowrap">
-      <InteractionRoom />
-      <Room />
+    <section className="flex justify-evenly gap-12 flex-wrap md:flex-nowrap">
+      <RoomControls />
+      <History />
     </section>
   );
-}
+};
