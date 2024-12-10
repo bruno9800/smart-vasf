@@ -7,7 +7,7 @@
   padding: 1rem;
 }
 
-.header > div {
+.header {
   display: flex;
   align-items: center;
   gap: 2rem;
