@@ -2,14 +2,14 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // mudar de acordo com o que virá do websocket
-export interface dataType {
-    lightStatus: boolean;
-    date: Date;
-};
+// export interface dataType {
+//     lightStatus: boolean;
+//     date: Date;
+// };
 
 interface WebSocketContextType {
-    sendMessage: (message: string) => void;
-    message: string;
+    sendMessage: (message: object) => void;
+    message: object;
 };
 
 export const WebSocketContext = createContext<WebSocketContextType | undefined>(undefined);
@@ -18,7 +18,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
     const [webSocket, setWebSocket] = useState<WebSocket | null>(null);
-    const [message, setMessage] = useState<string>('');
+    const [message, setMessage] = useState<object>({});
 
     useEffect(() => {
         const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -53,9 +53,9 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({
         return () => ws.close();
     }, []);
 
-    const sendMessage = (message: string) => {
+    const sendMessage = (message: object) => {
         if (webSocket && webSocket.readyState === WebSocket.OPEN) {
-            webSocket.send(message);
+            webSocket.send(JSON.stringify(message));
             return;
         }
 
