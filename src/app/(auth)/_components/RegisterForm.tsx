@@ -5,28 +5,30 @@ import { InputComponent } from "@/components/Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userLogin } from "../login/action";
-import { loginProps, loginSchema } from "../login/loginSchema";
+import { RegisterProps, registerSchema } from "../cadastro/registerSchema";
+import { userRegister } from "../cadastro/action";
+import { redirect } from "next/navigation";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginProps>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterProps>({
+    resolver: zodResolver(registerSchema),
   });
 
-  async function handleLogin(data: loginProps) {
+  async function handleLogin(data: RegisterProps) {
     console.log("oi");
-    const { response, error } = await userLogin(data);
+    const { response, error } = await userRegister(data);
 
     if (error) {
-      console.error("Erro ao fazer login:", error.message);
-      // Mostrar mensagem de erro ao usuário, etc.
+      console.error("Erro ao fazer cadastro:", error.message);
     } else {
       console.log("Login bem-sucedido!", response);
       localStorage.setItem("authToken", response.token);
       // Armazenar token, redirecionar usuário, etc.
+      redirect("/login");
     }
   }
 
@@ -35,6 +37,14 @@ export const LoginForm = () => {
       onSubmit={handleSubmit(handleLogin)}
       className="flex flex-col gap-4 items-start"
     >
+      <div className="w-full flex flex-col gap-2">
+        <label htmlFor="name">Nome:</label>
+        <InputComponent
+          type="text"
+          {...register("name")}
+          autoComplete="name" // Adicione o atributo autocomplete
+        />
+      </div>
       <div className="w-full flex flex-col gap-2">
         <label htmlFor="email">Email:</label>
         <InputComponent
@@ -51,6 +61,7 @@ export const LoginForm = () => {
           autoComplete="current-password" // Adicione o atributo autocomplete
         />
       </div>
+      {errors && <p>{errors.root?.message}</p>}
       <Button label="enviar" type="submit" />
     </form>
   );

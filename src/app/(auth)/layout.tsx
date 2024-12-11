@@ -3,17 +3,25 @@ import Image from "next/image";
 
 import logoUnivasf from "@/../public/univasf-logo.png";
 import logoSmart from "@/../public/logo-smart.png";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Smart Vasf",
   description: "IOT das salas da UNIVASF",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const auth = (await cookies()).get("@auth:smart-vasf");
+
+  if (auth) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="flex flex-col min-h-screen ">
       <header className="flex self-stretch items-center justify-center p-4 pb-8 bg-slate-200">
