@@ -16,7 +16,7 @@ bun dev
 
 ## Arquitetura do projeto
 
-![arquitetura]('arq.png')
+![arquitetura]('public/arq.png')
 
 ## requisições
 
